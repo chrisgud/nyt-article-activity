@@ -3,3 +3,8 @@
     color: white;
     font-size: 18;
 }
+
+body {
+    max-width: 900px;
+    margin: 0 auto;
+}

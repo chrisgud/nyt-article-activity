@@ -1,3 +1,14 @@
+// Reference IDs from index.html
+// Article Card Body = articleResults
+// Submit Button = submitButton
+// Clear Form Button = clearButton
+// Search term = searchTerm
+// Number of Articles = articleNumber
+// Start year = startYear
+// End year = endYear
+
+
+
 // Built by LucyBot. www.lucybot.com
 // example url for all of the fields we will need to use in our queries
 // as far as I can tell, we will need to implement number of records in our JS code
