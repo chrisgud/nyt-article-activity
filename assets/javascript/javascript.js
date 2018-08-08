@@ -30,12 +30,15 @@ $('#submitButton').on('click', (event) => {
   $.get(url).done(function (r) {
     results = r.response.docs
 
-    for(i=0;i<articleNumber;i++) {
-      console.log(results[i].headline.main);
-      console.log(results[i].snippet);
+    for (i = 0; i < articleNumber; i++) {
+      $('#articleResults').append(`<div class="card m-2">
+        <h5 class="card-header">${results[i].headline.main}<br>Published: ${results[i].pub_date.substring(0, 10)}</h5>
+        <div class="card-body">
+          <p class="card-text">${results[i].snippet}</p>
+          <a href="${results[i].web_url}" class="btn btn-primary">Source</a>
+        </div>
+      </div>`);
     }
-    // console.log(result.docs[0].web_url);
-      console.log(r);
   }).fail(function (err) {
     throw err;
   });
