@@ -19,6 +19,26 @@ $('#submitButton').on('click', (event) => {
   console.log(articleNumber);
   console.log(startYear);
   console.log(endYear);
+
+  var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+  url += '?' + $.param({
+    'api-key': "4a78c65b3e1e41e58d2f1cafcdd1f4f2",
+    'q': searchTerm,
+    'begin_date': startYear,
+    'end_date': endYear
+  });
+  $.get(url).done(function (r) {
+    results = r.response.docs
+
+    for(i=0;i<articleNumber;i++) {
+      console.log(results[i].headline.main);
+      console.log(results[i].snippet);
+    }
+    // console.log(result.docs[0].web_url);
+      console.log(r);
+  }).fail(function (err) {
+    throw err;
+  });
 });
 
 $('#clearButton').on('click', (event) => {
@@ -44,9 +64,9 @@ url += '?' + $.param({
 $.ajax({
   url: url,
   method: 'GET',
-}).done(function(result) {
-    console.log(result.docs[0].web_url);
-//   console.log(result);
-}).fail(function(err) {
+}).done(function (result) {
+  console.log(result.docs[0].web_url);
+  //   console.log(result);
+}).fail(function (err) {
   throw err;
 });
