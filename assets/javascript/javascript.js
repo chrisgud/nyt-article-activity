@@ -28,16 +28,26 @@ $('#submitButton').on('click', (event) => {
     'end_date': endYear
   });
   $.get(url).done(function (r) {
+    $('#articleResults').empty();
     results = r.response.docs
 
-    for (i = 0; i < articleNumber; i++) {
-      $('#articleResults').append(`<div class="card m-2">
-        <h5 class="card-header">${results[i].headline.main}<br>Published: ${results[i].pub_date.substring(0, 10)}</h5>
+    if (results.length !== 0) {
+      for (i = 0; i < articleNumber; i++) {
+        var day = results[i].pub_date.substring(8, 10);
+        var month = results[i].pub_date.substring(5, 7);
+        var year = results[i].pub_date.substring(0, 4);
+
+        $('#articleResults').append(`<div class="card m-2">
+        <h5 class="card-header">${results[i].headline.main}</h5>
         <div class="card-body">
           <p class="card-text">${results[i].snippet}</p>
-          <a href="${results[i].web_url}" class="btn btn-primary">Source</a>
+          <p class="card-text p-custom">Published: ${month}-${day}-${year}</p>
+          <a href="${results[i].web_url}" class="btn btn-primary float-right">Source</a>
         </div>
       </div>`);
+      }
+    } else {
+      $('#articleResults').append(`<h3>No Results Found</h3>`);
     }
   }).fail(function (err) {
     throw err;
