@@ -7,7 +7,28 @@
 // Start year = startYear
 // End year = endYear
 
+$('#submitButton').on('click', (event) => {
+  event.preventDefault();
 
+  var searchTerm = $('#searchTerm').val();
+  var articleNumber = $('#articleNumber').val();
+  var startYear = $('#startYear').val() + "0101";
+  var endYear = $('#endYear').val() + "1231";
+
+  console.log(searchTerm);
+  console.log(articleNumber);
+  console.log(startYear);
+  console.log(endYear);
+});
+
+$('#clearButton').on('click', (event) => {
+  event.preventDefault();
+
+  $('#searchTerm').val('');
+  $('#articleNumber').val('');
+  $('#startYear').val('');
+  $('#endYear').val('');
+});
 
 // Built by LucyBot. www.lucybot.com
 // example url for all of the fields we will need to use in our queries
